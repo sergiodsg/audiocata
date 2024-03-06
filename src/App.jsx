@@ -11,14 +11,15 @@ function App() {
       gyroControls: false,
       minHeight: 200.0,
       minWidth: 200.0,
-      size: 2.6,
+      size: 2,
     });
   }, []);
 
   return (
     <div className="background-fallback h-screen">
       <div id="vanta" className="h-screen">
-        <h1 className="text-3xl">React App</h1>
+        <h1 className="text-3xl text-white">Audiocata</h1>
+        <button className="btn">Button</button>
       </div>
     </div>
   );
