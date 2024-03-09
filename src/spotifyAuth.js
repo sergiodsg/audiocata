@@ -63,8 +63,10 @@ export async function getAccessToken(clientId, code) {
       body: params
   });
 
-  const { access_token } = await result.json();
-  return access_token;
+  // const { access_token } = await result.json();
+  // return access_token;
+  const tokenInfo = await result.json();
+  return tokenInfo;
 }
 
 export async function fetchProfile(token) {

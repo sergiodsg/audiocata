@@ -12,6 +12,9 @@ function App() {
   const params = new URLSearchParams(window.location.search);
   const code = params.get("code");
 
+  const accessToken = window.localStorage.getItem("accessToken");
+  const expirationDate = window.localStorage.getItem("expirationDate");
+
   const [profile, setProfile] = useState({});
 
   useEffect(() => {
@@ -27,21 +30,48 @@ function App() {
   }, []);
 
   useEffect(() => {
-    if (!code) {
-      return;
-    }
+    // Caso 1: No hay 'code' y el token de acceso no es válido
+  if (!code && ((!accessToken || accessToken==="undefined") || (new Date().getTime() > expirationDate || expirationDate==="NaN"))) {
+    // Redirige al usuario para iniciar sesión
+    return;
+  }
+
+  // Caso 2: Hay 'code' pero el token de acceso no es válido
+  if (code && ((!accessToken || accessToken==="undefined") || (new Date().getTime() > expirationDate || expirationDate==="NaN"))) {
     (async () => {
-      const accessToken = await getAccessToken(clientId, code);
+      const result = await getAccessToken(clientId, code);
+      const accessToken = result.access_token;
+      const expiresIn = result.expires_in;
+
+      const expirationDate = new Date().getTime() + expiresIn * 1000;
+
+      window.localStorage.setItem("accessToken", accessToken);
+      window.localStorage.setItem("expirationDate", expirationDate.toString());
+
       const profileData = await fetchProfile(accessToken);
       setProfile(profileData);
     })();
-    console.log(profile);
-  }, [code]);
+    return;
+  }
+
+  // Caso 3: Hay un token de acceso válido en el almacenamiento local
+  if ((accessToken && accessToken!=="undefined") && (new Date().getTime() <= expirationDate && expirationDate!=="NaN")) {
+    (async () => {
+      const profileData = await fetchProfile(accessToken);
+      setProfile(profileData);
+    })();
+  }
+}, [code]);
+console.log("!code && (!accessToken || new Date().getTime() > expirationDate)", !code && (!accessToken || new Date().getTime() > expirationDate));
+console.log("!code", !code);
+console.log("(!accessToken || new Date().getTime() > expirationDate)", (!accessToken || new Date().getTime() > expirationDate));
+console.log("!accessToken", !accessToken);
+console.log("new Date().getTime() > expirationDate", new Date().getTime() > expirationDate);
 
   return (
     <div className="background-fallback h-screen">
       <div id="vanta" className="h-screen">
-        {!code ? (
+        {(!code && ((!accessToken || accessToken==="undefined") || (new Date().getTime() > expirationDate || expirationDate==="NaN"))) ? (
           <div className="flex items-center justify-center h-full">
             <div className="p-5 rounded-md bg-gray-300 bg-opacity-40">
               <h1 className="text-4xl text-white mb-2">Audiocata</h1>
