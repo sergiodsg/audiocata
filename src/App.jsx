@@ -71,7 +71,7 @@ console.log("new Date().getTime() > expirationDate", new Date().getTime() > expi
   return (
     <div className="background-fallback h-screen">
       <div id="vanta" className="h-screen">
-        {(!code && ((!accessToken || accessToken==="undefined") || (new Date().getTime() > expirationDate || expirationDate==="NaN"))) ? (
+        {(((!accessToken || accessToken==="undefined") || (new Date().getTime() > expirationDate || expirationDate==="NaN"))) ? (
           <div className="flex items-center justify-center h-full">
             <div className="p-5 rounded-md bg-gray-300 bg-opacity-40">
               <h1 className="text-4xl text-white mb-2">Audiocata</h1>
