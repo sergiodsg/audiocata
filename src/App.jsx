@@ -1,7 +1,11 @@
 import HALO from "vanta/src/vanta.halo";
 import "./App.css";
 import { useState, useEffect } from "react";
-import { redirectToAuthCodeFlow, getAccessToken, fetchProfile } from "./spotifyAuth";
+import {
+  redirectToAuthCodeFlow,
+  getAccessToken,
+  fetchProfile,
+} from "./spotifyAuth";
 
 function App() {
   const clientId = import.meta.env.VITE_CLIENT_ID; // Replace with your client ID
@@ -32,26 +36,32 @@ function App() {
       setProfile(profileData);
     })();
     console.log(profile);
-  }, [code])
-
+  }, [code]);
 
   return (
     <div className="background-fallback h-screen">
       <div id="vanta" className="h-screen">
         {!code ? (
           <div className="flex items-center justify-center h-full">
-            <h1 className="text-3xl text-white">Audiocata</h1>
-            <button
-              className="btn"
-              onClick={() => redirectToAuthCodeFlow(clientId)}
-            >
-              Login with Spotify
-            </button>
+            <div className="p-5 rounded-md bg-gray-300 bg-opacity-40">
+              <h1 className="text-4xl text-white mb-2">Audiocata</h1>
+              <p className="mb-2">A listening habits analyzer for spotify :)</p>
+              <button
+                className="btn"
+                onClick={() => redirectToAuthCodeFlow(clientId)}
+              >
+                Login with Spotify 🎧
+              </button>
+            </div>
           </div>
         ) : (
           <div className="flex items-center justify-center h-full">
             <h1 className="text-3xl text-white">Audiocata</h1>
-            {profile?.images?.[0]?.url ? <img src={profile.images[0].url} alt="" /> : <p>nada</p>}
+            {profile?.images?.[0]?.url ? (
+              <img src={profile.images[0].url} alt="" />
+            ) : (
+              <p>nada</p>
+            )}
           </div>
         )}
       </div>
