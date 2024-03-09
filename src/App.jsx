@@ -62,11 +62,6 @@ function App() {
     })();
   }
 }, [code]);
-console.log("!code && (!accessToken || new Date().getTime() > expirationDate)", !code && (!accessToken || new Date().getTime() > expirationDate));
-console.log("!code", !code);
-console.log("(!accessToken || new Date().getTime() > expirationDate)", (!accessToken || new Date().getTime() > expirationDate));
-console.log("!accessToken", !accessToken);
-console.log("new Date().getTime() > expirationDate", new Date().getTime() > expirationDate);
 
   return (
     <div className="background-fallback h-screen">
