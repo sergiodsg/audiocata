@@ -1,8 +1,9 @@
-import HALO from "vanta/src/vanta.halo";
-import "./App.css";
 import { useState, useEffect } from "react";
-import { redirectToAuthCodeFlow, getAccessToken, logOff } from "./spotifyAuth";
+import HALO from "vanta/src/vanta.halo";
+import { redirectToAuthCodeFlow, getAccessToken } from "./spotifyAuth";
 import { fetchProfile, fetchTop } from "./spotifyStats";
+import UserButton from "./assets/components/UserButton";
+import "./App.css";
 
 function App() {
   const clientId = import.meta.env.VITE_CLIENT_ID;
@@ -116,25 +117,9 @@ function App() {
         ) : (
           <div className="flex items-center justify-center w-full p-5">
             <div className="p-5 rounded-md bg-gray-300 bg-opacity-40 w-full">
-              <div className="flex justify-between w-full">
+              <div className="flex justify-between items-center w-full">
                 <h1 className="text-3xl text-white">Audiocata</h1>
-                <details className="dropdown">
-                  <summary className="m-1 btn">
-                    {profile?.images?.[0]?.url && (
-                      <div className="avatar">
-                        <div className="w-8 mask mask-hexagon">
-                          <img src={profile.images[0].url} />
-                        </div>
-                      </div>
-                    ) }
-                    {profile?.display_name || <span className="loading loading-spinner loading-xs"></span>}
-                  </summary>
-                  <ul className="p-2 shadow menu dropdown-content z-[1] bg-base-100 text-black rounded-box w-36">
-                    <li>
-                    <button className="btn" onClick={logOff}>Log Off</button>
-                    </li>
-                  </ul>
-                </details>
+                <UserButton profile={profile} />
               </div>
             </div>
           </div>
