@@ -4,8 +4,8 @@ import { useState, useEffect } from "react";
 import {
   redirectToAuthCodeFlow,
   getAccessToken,
-  fetchProfile,
 } from "./spotifyAuth";
+import { fetchProfile } from "./spotifyStats";
 
 function App() {
   const clientId = import.meta.env.VITE_CLIENT_ID; // Replace with your client ID

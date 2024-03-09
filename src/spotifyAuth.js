@@ -1,16 +1,3 @@
-// const clientId = import.meta.env.VITE_CLIENT_ID; // Replace with your client ID
-// const params = new URLSearchParams(window.location.search);
-// const code = params.get("code");
-
-// // This flow could be replaced with login logic
-// if (!code) {
-//     redirectToAuthCodeFlow(clientId);
-// } else {
-//     const accessToken = await getAccessToken(clientId, code);
-//     const profile = await fetchProfile(accessToken);
-//     populateUI(profile);
-// }
-
 export async function redirectToAuthCodeFlow(clientId) {
   const verifier = generateCodeVerifier(128);
   const challenge = await generateCodeChallenge(verifier);
@@ -67,12 +54,4 @@ export async function getAccessToken(clientId, code) {
   // return access_token;
   const tokenInfo = await result.json();
   return tokenInfo;
-}
-
-export async function fetchProfile(token) {
-  const result = await fetch("https://api.spotify.com/v1/me", {
-      method: "GET", headers: { Authorization: `Bearer ${token}` }
-  });
-
-  return await result.json();
 }
