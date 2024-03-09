@@ -5,7 +5,7 @@ import {
   redirectToAuthCodeFlow,
   getAccessToken,
 } from "./spotifyAuth";
-import { fetchProfile } from "./spotifyStats";
+import { fetchProfile, fetchTop } from "./spotifyStats";
 
 function App() {
   const clientId = import.meta.env.VITE_CLIENT_ID; // Replace with your client ID
@@ -49,6 +49,7 @@ function App() {
       window.localStorage.setItem("expirationDate", expirationDate.toString());
 
       const profileData = await fetchProfile(accessToken);
+      await fetchTop(accessToken, "artists", "short_term", 10, 0);
       setProfile(profileData);
     })();
     return;
@@ -58,6 +59,7 @@ function App() {
   if ((accessToken && accessToken!=="undefined") && (new Date().getTime() <= expirationDate && expirationDate!=="NaN")) {
     (async () => {
       const profileData = await fetchProfile(accessToken);
+      await fetchTop(accessToken, "artists", "long_term", 10, 0);
       setProfile(profileData);
     })();
   }
