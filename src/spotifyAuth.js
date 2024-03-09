@@ -55,3 +55,10 @@ export async function getAccessToken(clientId, code) {
   const tokenInfo = await result.json();
   return tokenInfo;
 }
+
+export function logOff() {
+  localStorage.removeItem("accessToken");
+  localStorage.removeItem("expirationDate");
+  localStorage.removeItem("verifier");
+  document.location = import.meta.env.VITE_REDIRECT_URI;
+}
