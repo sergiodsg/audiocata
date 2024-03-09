@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
 import HALO from "vanta/src/vanta.halo";
-import { redirectToAuthCodeFlow, getAccessToken } from "./spotifyAuth";
+import { getAccessToken } from "./spotifyAuth";
 import { fetchProfile, fetchTop } from "./spotifyStats";
+import Login from "./assets/components/Login";
 import UserButton from "./assets/components/UserButton";
 import "./App.css";
 
@@ -12,6 +13,8 @@ function App() {
 
   const accessToken = window.localStorage.getItem("accessToken");
   const expirationDate = window.localStorage.getItem("expirationDate");
+
+  const [timeRange, setTimeRange] = useState("short_term");
 
   const [profile, setProfile] = useState({});
 
@@ -61,7 +64,20 @@ function App() {
         );
 
         const profileData = await fetchProfile(accessToken);
-        await fetchTop(accessToken, "artists", "short_term", 10, 0);
+        const trackStats = await fetchTop(
+          accessToken,
+          "tracks",
+          timeRange,
+          50,
+          0
+        );
+        const artistStats = await fetchTop(
+          accessToken,
+          "artists",
+          timeRange,
+          50,
+          0
+        );
         setProfile(profileData);
       })();
       return;
@@ -79,21 +95,21 @@ function App() {
         const trackStats = await fetchTop(
           accessToken,
           "tracks",
-          "long_term",
+          timeRange,
           50,
           0
         );
         const artistStats = await fetchTop(
           accessToken,
           "artists",
-          "long_term",
+          timeRange,
           50,
           0
         );
         setProfile(profileData);
       })();
     }
-  }, [code]);
+  }, [code, timeRange]);
 
   return (
     <div className="background-fallback h-screen">
@@ -103,16 +119,7 @@ function App() {
         new Date().getTime() > expirationDate ||
         expirationDate === "NaN" ? (
           <div className="flex items-center justify-center h-full">
-            <div className="p-5 rounded-md bg-gray-300 bg-opacity-40">
-              <h1 className="text-4xl text-white mb-2">Audiocata</h1>
-              <p className="mb-2">A listening habits analyzer for spotify :)</p>
-              <button
-                className="btn"
-                onClick={() => redirectToAuthCodeFlow(clientId)}
-              >
-                Login with Spotify 🎧
-              </button>
-            </div>
+            <Login clientId={clientId} />
           </div>
         ) : (
           <div className="flex items-center justify-center w-full p-5">
@@ -120,6 +127,49 @@ function App() {
               <div className="flex justify-between items-center w-full">
                 <h1 className="text-3xl text-white">Audiocata</h1>
                 <UserButton profile={profile} />
+              </div>
+              {/* componentes de estadísticas */}
+              <div className="mt-2">
+                <div className="card bg-base-100 shadow-xl text-primary-content">
+                  <div className="card-body">
+                    <div className="form-control">
+                      <label className="label cursor-pointer">
+                        <span className="label-text">Last 4 weeks</span>
+                        <input
+                          type="radio"
+                          name="radio-10"
+                          className="radio checked:bg-purple-500"
+                          onClick={() => setTimeRange("short_term")}
+                          checked={timeRange === "short_term"}
+                        />
+                      </label>
+                    </div>
+                    <div className="form-control">
+                      <label className="label cursor-pointer">
+                        <span className="label-text">Last 6 months</span>
+                        <input
+                          type="radio"
+                          name="radio-10"
+                          className="radio checked:bg-emerald-300"
+                          onClick={() => setTimeRange("medium_term")}
+                          checked={timeRange === "medium_term"}
+                        />
+                      </label>
+                    </div>
+                    <div className="form-control">
+                      <label className="label cursor-pointer">
+                        <span className="label-text">All time</span>
+                        <input
+                          type="radio"
+                          name="radio-10"
+                          className="radio checked:bg-blue-400"
+                          onClick={() => setTimeRange("long_term")}
+                          checked={timeRange === "long_term"}
+                        />
+                      </label>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
