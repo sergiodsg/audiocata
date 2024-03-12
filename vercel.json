@@ -1,0 +1,5 @@
+{
+  "rewrites": [
+    { "source": "/api/proxy/(.*)", "destination": "https://i.scdn.co/$1" }
+  ]
+}
