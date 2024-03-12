@@ -16,6 +16,8 @@ function App() {
   const expirationDate = window.localStorage.getItem("expirationDate");
 
   const [timeRange, setTimeRange] = useState("short_term");
+  const [tracksStats, setTracksStats] = useState([]);
+  const [artistsStats, setArtistsStats] = useState([]);
 
   const [profile, setProfile] = useState({});
 
@@ -65,14 +67,14 @@ function App() {
         );
 
         const profileData = await fetchProfile(accessToken);
-        const trackStats = await fetchTop(
+        const tracksData= await fetchTop(
           accessToken,
           "tracks",
           timeRange,
           50,
           0
         );
-        const artistStats = await fetchTop(
+        const artistsData = await fetchTop(
           accessToken,
           "artists",
           timeRange,
@@ -80,6 +82,8 @@ function App() {
           0
         );
         setProfile(profileData);
+        setTracksStats(tracksData);
+        setArtistsStats(artistsData);
       })();
       return;
     }
@@ -93,14 +97,14 @@ function App() {
     ) {
       (async () => {
         const profileData = await fetchProfile(accessToken);
-        const trackStats = await fetchTop(
+        const tracksData = await fetchTop(
           accessToken,
           "tracks",
           timeRange,
           50,
           0
         );
-        const artistStats = await fetchTop(
+        const artistsData = await fetchTop(
           accessToken,
           "artists",
           timeRange,
@@ -108,6 +112,8 @@ function App() {
           0
         );
         setProfile(profileData);
+        setTracksStats(tracksData);
+        setArtistsStats(artistsData);
       })();
     }
   }, [code, timeRange]);
@@ -129,49 +135,46 @@ function App() {
                 <h1 className="text-3xl text-white">Audiocata</h1>
                 <UserButton profile={profile} />
               </div>
-              {/* componentes de estadísticas */}
-              <div className="mt-2">
-                <div className="card bg-base-100 shadow-xl text-primary-content">
-                  <div className="p-3">
-                    <div className="form-control">
-                      <label className="label cursor-pointer">
-                        <span className="label-text">Last 4 weeks</span>
-                        <input
-                          type="radio"
-                          name="radio-10"
-                          className="radio checked:bg-purple-500"
-                          onClick={() => setTimeRange("short_term")}
-                          checked={timeRange === "short_term"}
-                        />
-                      </label>
-                    </div>
-                    <div className="form-control">
-                      <label className="label cursor-pointer">
-                        <span className="label-text">Last 6 months</span>
-                        <input
-                          type="radio"
-                          name="radio-10"
-                          className="radio checked:bg-emerald-300"
-                          onClick={() => setTimeRange("medium_term")}
-                          checked={timeRange === "medium_term"}
-                        />
-                      </label>
-                    </div>
-                    <div className="form-control">
-                      <label className="label cursor-pointer">
-                        <span className="label-text">All time</span>
-                        <input
-                          type="radio"
-                          name="radio-10"
-                          className="radio checked:bg-blue-400"
-                          onClick={() => setTimeRange("long_term")}
-                          checked={timeRange === "long_term"}
-                        />
-                      </label>
-                    </div>
-                  </div>
+              {/* selector */}
+              <div className="card mt-2 p-3 bg-base-100 shadow-xl">
+                <div className="form-control">
+                  <label className="label cursor-pointer">
+                    <span className="label-text">Last 4 weeks</span>
+                    <input
+                      type="radio"
+                      name="radio-10"
+                      className="radio checked:bg-purple-500"
+                      onChange={() => setTimeRange("short_term")}
+                      checked={timeRange === "short_term"}
+                    />
+                  </label>
+                </div>
+                <div className="form-control">
+                  <label className="label cursor-pointer">
+                    <span className="label-text">Last 6 months</span>
+                    <input
+                      type="radio"
+                      name="radio-10"
+                      className="radio checked:bg-emerald-300"
+                      onChange={() => setTimeRange("medium_term")}
+                      checked={timeRange === "medium_term"}
+                    />
+                  </label>
+                </div>
+                <div className="form-control">
+                  <label className="label cursor-pointer">
+                    <span className="label-text">All time</span>
+                    <input
+                      type="radio"
+                      name="radio-10"
+                      className="radio checked:bg-blue-400"
+                      onChange={() => setTimeRange("long_term")}
+                      checked={timeRange === "long_term"}
+                    />
+                  </label>
                 </div>
               </div>
+              <TopSongs trackStats={tracksStats} />
             </div>
           </div>
         )}
