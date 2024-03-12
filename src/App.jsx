@@ -2,8 +2,9 @@ import { useState, useEffect } from "react";
 import HALO from "vanta/src/vanta.halo";
 import { getAccessToken } from "./spotifyAuth";
 import { fetchProfile, fetchTop } from "./spotifyStats";
-import Login from "./assets/components/Login";
-import UserButton from "./assets/components/UserButton";
+import Login from "./components/Login";
+import UserButton from "./components/UserButton";
+import TopSongs from "./components/TopSongs";
 import "./App.css";
 
 function App() {
@@ -131,7 +132,7 @@ function App() {
               {/* componentes de estadísticas */}
               <div className="mt-2">
                 <div className="card bg-base-100 shadow-xl text-primary-content">
-                  <div className="card-body">
+                  <div className="p-3">
                     <div className="form-control">
                       <label className="label cursor-pointer">
                         <span className="label-text">Last 4 weeks</span>

@@ -1,4 +1,4 @@
-import { logOff } from "../../../spotifyAuth";
+import { logOff } from "../../spotifyAuth";
 
 export default function UserButton({ profile }) {
   return (

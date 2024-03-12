@@ -1,4 +1,4 @@
-import { redirectToAuthCodeFlow } from "../../../spotifyAuth";
+import { redirectToAuthCodeFlow } from "../../spotifyAuth";
 
 export default function Login({ clientId }) {
   return (
