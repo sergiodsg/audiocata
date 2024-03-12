@@ -23,7 +23,7 @@ export default function SongCard({ rank, name, artists, cover }) {
         <div className="w-1/3">
           <div className="avatar">
             <div className="w-8 rounded-md">
-              <img onLoad={onImageLoad} src={cover.replace('https://i.scdn.co', '/api')} />
+              <img onLoad={onImageLoad} src={cover.replace('https://i.scdn.co', '/api/proxy')} />
             </div>
           </div>
         </div>

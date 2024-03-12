@@ -2,7 +2,7 @@
 const axios = require('axios');
 
 module.exports = async (req, res) => {
-  const url = 'https://i.scdn.co' + req.url.replace(/^\/api/, '')
+  const url = 'https://i.scdn.co' + req.url.replace(/^\/api\/proxy/, '');
 
   try {
     const { data } = await axios.get(url, {
