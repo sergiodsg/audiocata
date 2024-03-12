@@ -67,7 +67,7 @@ function App() {
         );
 
         const profileData = await fetchProfile(accessToken);
-        const tracksData= await fetchTop(
+        const tracksData = await fetchTop(
           accessToken,
           "tracks",
           timeRange,
@@ -119,8 +119,8 @@ function App() {
   }, [code, timeRange]);
 
   return (
-    <div className="background-fallback h-screen">
-      <div id="vanta" className="h-screen">
+    <div className="background-fallback min-h-screen">
+      <div id="vanta" className="min-h-screen">
         {!accessToken ||
         accessToken === "undefined" ||
         new Date().getTime() > expirationDate ||
