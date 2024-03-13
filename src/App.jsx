@@ -125,7 +125,7 @@ function App() {
         accessToken === "undefined" ||
         new Date().getTime() > expirationDate ||
         expirationDate === "NaN" ? (
-          <div className="flex items-center justify-center h-full">
+          <div className="flex items-center justify-center h-screen">
             <Login clientId={clientId} />
           </div>
         ) : (
