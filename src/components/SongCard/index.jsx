@@ -45,7 +45,6 @@ export default function SongCard({ rank, name, artists, cover }) {
         {/* Cover */}
         <div className="mr-2 w-8 shadow">
             <img
-              className="rounded-sm"
               onLoad={onImageLoad}
               src={cover.replace("https://i.scdn.co", "/api/proxy")}
             />
