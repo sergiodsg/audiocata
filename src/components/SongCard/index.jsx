@@ -16,7 +16,6 @@ export default function SongCard({ rank, name, artists, cover }) {
         setTextColor("#000");
         setBgRank("#fff");
       }
-      console.log(color);
     });
   }
 
@@ -43,24 +42,38 @@ export default function SongCard({ rank, name, artists, cover }) {
         </div>
 
         {/* Cover */}
-        <div className="mr-2 w-8 shadow">
-            <img
-              onLoad={onImageLoad}
-              src={cover.replace("https://i.scdn.co", "/api/proxy")}
-            />
+        <div className="mr-2 w-8 min-w-8 shadow">
+          <img
+            onLoad={onImageLoad}
+            src={cover.replace("https://i.scdn.co", "/api/proxy")}
+          />
         </div>
         {/* Name and artists */}
-        <div className="">
-          <div className="flex flex-col">
-            <h1 className="text-sm">{name}</h1>
-            <div className="flex gap-1">
-              {artists.map((artist, index) => (
-                <p key={index} className="text-xs">
-                  {artist.name}
-                  {index < artists.length - 1 ? "," : ""}
-                </p>
-              ))}
-            </div>
+
+        <div className="flex flex-col w-8/12">
+          <h1
+            className="text-sm"
+            style={{
+              whiteSpace: "nowrap",
+              overflow: "hidden",
+              textOverflow: "ellipsis",
+            }}
+          >
+            {name}
+          </h1>
+          <div className="flex gap-1">
+            <p
+              className="text-xs"
+              style={{
+                whiteSpace: "nowrap",
+                overflow: "hidden",
+                textOverflow: "ellipsis",
+              }}
+            >
+              {artists.map((artist, index) =>
+                index < artists.length - 1 ? artist.name + ", " : artist.name
+              )}
+            </p>
           </div>
         </div>
       </div>

@@ -6,6 +6,7 @@ import Login from "./components/Login";
 import Footer from "./components/Footer";
 import UserButton from "./components/UserButton";
 import TopSongs from "./components/TopSongs";
+import { useSpring, animated } from "@react-spring/web";
 import "./App.css";
 
 function App() {
@@ -23,6 +24,19 @@ function App() {
   const [artistsStats, setArtistsStats] = useState([]);
 
   const [profile, setProfile] = useState({});
+
+  const useDynamicAnimation = (delay) => {
+    return useSpring({
+      from: { opacity: 0 },
+      to: { opacity: 1 },
+      delay: delay,
+    });
+  }
+
+  const animation200 = useDynamicAnimation(200);
+  const animation400 = useDynamicAnimation(400);
+  const animation425 = useDynamicAnimation(425);
+  const animation450 = useDynamicAnimation(450);
 
   useEffect(() => {
     HALO({
@@ -144,21 +158,21 @@ function App() {
             {loading ? (
               <span className="loading loading-spinner loading-lg"></span>
             ) : (
-              <>
+              <animated.div style={animation200}>
                 <Login clientId={clientId} />
                 <Footer />
-              </>
+              </animated.div>
             )}
           </div>
         ) : (
           <div className="flex items-center justify-center w-full p-5">
-            <div className="px-5 pt-2 rounded-md bg-gray-300 bg-opacity-40 w-full">
+            <animated.div style={animation200} className="px-5 py-3 rounded-md bg-gray-300 bg-opacity-40 w-full">
               <div className="flex justify-between items-center w-full">
                 <h1 className="text-4xl text-white">audiocata</h1>
                 <UserButton profile={profile} />
               </div>
               {/* selector */}
-              <div className="card mt-2 p-3 bg-base-100 shadow-xl">
+              <animated.div style={animation425} className="card mt-2 p-3 bg-base-100 shadow-xl">
                 <div className="form-control">
                   <label className="label cursor-pointer">
                     <span className="label-text">Last 4 weeks</span>
@@ -195,9 +209,11 @@ function App() {
                     />
                   </label>
                 </div>
-              </div>
-              <TopSongs trackStats={tracksStats} />
-            </div>
+              </animated.div>
+              <animated.div style={animation450}>
+                <TopSongs trackStats={tracksStats} />
+              </animated.div>
+            </animated.div>
           </div>
         )}
       </div>
