@@ -16,6 +16,8 @@ function App() {
   const accessToken = window.localStorage.getItem("accessToken");
   const expirationDate = window.localStorage.getItem("expirationDate");
 
+  const [loading, setLoading] = useState(true);
+
   const [timeRange, setTimeRange] = useState("short_term");
   const [tracksStats, setTracksStats] = useState([]);
   const [artistsStats, setArtistsStats] = useState([]);
@@ -35,6 +37,7 @@ function App() {
   }, []);
 
   useEffect(() => {
+    setLoading(true);
     // Caso 1: No hay 'code' y el token de acceso no es válido
     if (
       !code &&
@@ -43,6 +46,7 @@ function App() {
         new Date().getTime() > expirationDate ||
         expirationDate === "NaN")
     ) {
+      setTimeout(() => setLoading(false), 100);
       return;
     }
 
@@ -54,38 +58,43 @@ function App() {
         new Date().getTime() > expirationDate ||
         expirationDate === "NaN")
     ) {
-      (async () => {
-        const result = await getAccessToken(clientId, code);
-        const accessToken = result.access_token;
-        const expiresIn = result.expires_in;
+      setLoading(true);
+      setTracksStats([]);
+      setArtistsStats([]);
 
-        const expirationDate = new Date().getTime() + expiresIn * 1000;
-
-        window.localStorage.setItem("accessToken", accessToken);
-        window.localStorage.setItem(
-          "expirationDate",
-          expirationDate.toString()
-        );
-
-        const profileData = await fetchProfile(accessToken);
-        const tracksData = await fetchTop(
-          accessToken,
-          "tracks",
-          timeRange,
-          50,
-          0
-        );
-        const artistsData = await fetchTop(
-          accessToken,
-          "artists",
-          timeRange,
-          50,
-          0
-        );
-        setProfile(profileData);
-        setTracksStats(tracksData);
-        setArtistsStats(artistsData);
-      })();
+        (async () => {
+          const result = await getAccessToken(clientId, code);
+          const accessToken = result.access_token;
+          const expiresIn = result.expires_in;
+  
+          const expirationDate = new Date().getTime() + expiresIn * 1000;
+  
+          window.localStorage.setItem("accessToken", accessToken);
+          window.localStorage.setItem(
+            "expirationDate",
+            expirationDate.toString()
+          );
+  
+          const profileData = await fetchProfile(accessToken);
+          const tracksData = await fetchTop(
+            accessToken,
+            "tracks",
+            timeRange,
+            50,
+            0
+          );
+          const artistsData = await fetchTop(
+            accessToken,
+            "artists",
+            timeRange,
+            50,
+            0
+          );
+          setProfile(profileData);
+          setTracksStats(tracksData);
+          setArtistsStats(artistsData);
+        })();
+        setTimeout(() => setLoading(false), 400);
       return;
     }
 
@@ -96,26 +105,31 @@ function App() {
       new Date().getTime() <= expirationDate &&
       expirationDate !== "NaN"
     ) {
-      (async () => {
-        const profileData = await fetchProfile(accessToken);
-        const tracksData = await fetchTop(
-          accessToken,
-          "tracks",
-          timeRange,
-          50,
-          0
-        );
-        const artistsData = await fetchTop(
-          accessToken,
-          "artists",
-          timeRange,
-          50,
-          0
-        );
-        setProfile(profileData);
-        setTracksStats(tracksData);
-        setArtistsStats(artistsData);
-      })();
+      setLoading(true);
+      setTracksStats([]);
+      setArtistsStats([]);
+
+        (async () => {
+          const profileData = await fetchProfile(accessToken);
+          const tracksData = await fetchTop(
+            accessToken,
+            "tracks",
+            timeRange,
+            50,
+            0
+          );
+          const artistsData = await fetchTop(
+            accessToken,
+            "artists",
+            timeRange,
+            50,
+            0
+          );
+          setProfile(profileData);
+          setTracksStats(tracksData);
+          setArtistsStats(artistsData);
+        })();
+        setTimeout(() => setLoading(false), 400);
     }
   }, [code, timeRange]);
 
@@ -127,8 +141,14 @@ function App() {
         new Date().getTime() > expirationDate ||
         expirationDate === "NaN" ? (
           <div className="flex flex-col items-center justify-center h-screen">
-            <Login clientId={clientId} />
-            <Footer/>
+            {loading ? (
+              <span className="loading loading-spinner loading-lg"></span>
+            ) : (
+              <>
+                <Login clientId={clientId} />
+                <Footer />
+              </>
+            )}
           </div>
         ) : (
           <div className="flex items-center justify-center w-full p-5">
