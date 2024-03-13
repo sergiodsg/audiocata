@@ -3,6 +3,7 @@ import HALO from "vanta/src/vanta.halo";
 import { getAccessToken } from "./spotifyAuth";
 import { fetchProfile, fetchTop } from "./spotifyStats";
 import Login from "./components/Login";
+import Footer from "./components/Footer";
 import UserButton from "./components/UserButton";
 import TopSongs from "./components/TopSongs";
 import "./App.css";
@@ -125,14 +126,15 @@ function App() {
         accessToken === "undefined" ||
         new Date().getTime() > expirationDate ||
         expirationDate === "NaN" ? (
-          <div className="flex items-center justify-center h-screen">
+          <div className="flex flex-col items-center justify-center h-screen">
             <Login clientId={clientId} />
+            <Footer/>
           </div>
         ) : (
           <div className="flex items-center justify-center w-full p-5">
-            <div className="p-5 rounded-md bg-gray-300 bg-opacity-40 w-full">
+            <div className="px-5 pt-2 rounded-md bg-gray-300 bg-opacity-40 w-full">
               <div className="flex justify-between items-center w-full">
-                <h1 className="text-3xl text-white">Audiocata</h1>
+                <h1 className="text-4xl text-white">audiocata</h1>
                 <UserButton profile={profile} />
               </div>
               {/* selector */}
