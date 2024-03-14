@@ -8,6 +8,7 @@ import UserButton from "./components/UserButton";
 import TopSongs from "./components/TopSongs";
 import { useSpring, animated } from "@react-spring/web";
 import "./App.css";
+import TopArtists from "./components/TopArtists";
 
 function App() {
   const clientId = import.meta.env.VITE_CLIENT_ID;
@@ -212,6 +213,7 @@ function App() {
               </animated.div>
               <animated.div style={animation450}>
                 <TopSongs trackStats={tracksStats} />
+                <TopArtists artistsStats={artistsStats} />
               </animated.div>
             </animated.div>
           </div>

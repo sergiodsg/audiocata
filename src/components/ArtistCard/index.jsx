@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { FastAverageColor } from "fast-average-color";
 
-export default function SongCard({ rank, name, artists, cover }) {
+export default function SongCard({ rank, name, image }) {
   const [bgColor, setBgColor] = useState("");
   const [textColor, setTextColor] = useState("#000");
   const [bgRank, setBgRank] = useState("#000");
@@ -42,10 +42,11 @@ export default function SongCard({ rank, name, artists, cover }) {
         </div>
 
         {/* Cover */}
-        <div className="mr-2 w-8 min-w-8 shadow">
+        <div className="mr-2 w-8 min-w-8 h-8 shadow overflow-hidden">
           <img
             onLoad={onImageLoad}
-            src={cover.replace("https://i.scdn.co", "/api/proxy")}
+            src={image.replace("https://i.scdn.co", "/api/proxy")}
+            style={{ objectFit: 'cover' }}
           />
         </div>
         {/* Name and artists */}
@@ -61,20 +62,6 @@ export default function SongCard({ rank, name, artists, cover }) {
           >
             {name}
           </h1>
-          <div className="flex gap-1">
-            <p
-              className="text-xs"
-              style={{
-                whiteSpace: "nowrap",
-                overflow: "hidden",
-                textOverflow: "ellipsis",
-              }}
-            >
-              {artists.map((artist, index) =>
-                index < artists.length - 1 ? artist.name + ", " : artist.name
-              )}
-            </p>
-          </div>
         </div>
       </div>
     </div>
