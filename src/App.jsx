@@ -9,6 +9,7 @@ import TopSongs from "./components/TopSongs";
 import TopArtists from "./components/TopArtists";
 import PopularityGauge from "./components/PopularityGauge";
 import PredominantYear from "./components/PredominantYear";
+import TopGenres from "./components/TopGenres";
 import { useSpring, animated } from "@react-spring/web";
 import "./App.css";
 
@@ -218,6 +219,7 @@ function App() {
                 <TopArtists artistsStats={artistsStats} />
                 <PopularityGauge tracksStats={tracksStats} />
                 <PredominantYear tracksStats={tracksStats} />
+                <TopGenres artistsStats={artistsStats} />
               </animated.div>
             </animated.div>
           </div>
