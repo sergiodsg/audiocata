@@ -1,25 +1,25 @@
 import { useState, useEffect } from "react";
 
-export default function PopularityGauge({ trackStats }) {
+export default function PopularityGauge({ tracksStats }) {
   const [popularity, setPopularity] = useState(0);
 
   const calculatePopularity = () => {
-    const sumPopularity = trackStats.items
-      ? trackStats.items.reduce((acc, curr) => acc + curr.popularity, 0)
+    const sumPopularity = tracksStats.items
+      ? tracksStats.items.reduce((acc, curr) => acc + curr.popularity, 0)
       : 0;
-    const avgPopularity = sumPopularity / trackStats.items?.length;
+    const avgPopularity = sumPopularity / tracksStats.items?.length;
     setPopularity(avgPopularity);
   };
 
   useEffect(() => {
     calculatePopularity();
-  }, [trackStats]);
+  }, [tracksStats]);
 
   return (
     <div className="card mt-2 p-3 bg-base-100 shadow-x">
       <h1 className="text-2xl text-black text-pretty">Popularity Rank</h1>
       <div className="sm:flex">
-        {trackStats.items ? (
+        {tracksStats.items ? (
           <>
             <div className="stat">
               <div className="stat-figure text-secondary">

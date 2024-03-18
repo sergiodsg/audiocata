@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
 
-export default function PredominantYear({ trackStats }) {
+export default function PredominantYear({ tracksStats }) {
   const [year, setYear] = useState(0);
 
   const calculateYear = () => {
     let years = [];
-    for (let i = 0; i < trackStats.items?.length; i++) {
-      years.push(trackStats.items[i].album.release_date.split("-")[0]);
+    for (let i = 0; i < tracksStats.items?.length; i++) {
+      years.push(tracksStats.items[i].album.release_date.split("-")[0]);
     }
     let counts = {};
     let maxYear = years[0],
@@ -25,13 +25,13 @@ export default function PredominantYear({ trackStats }) {
 
   useEffect(() => {
     calculateYear();
-  }, [trackStats]);
+  }, [tracksStats]);
 
   return (
     <div className="card mt-2 p-3 bg-base-100 shadow-x">
       <h1 className="text-2xl text-black text-pretty">Predominant Year</h1>
       <div className="sm:flex">
-        {trackStats.items ? (
+        {tracksStats.items ? (
           <>
             <div className="stat">
               <div className="stat-figure text-secondary">

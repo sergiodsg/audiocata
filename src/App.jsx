@@ -214,10 +214,10 @@ function App() {
                 </div>
               </animated.div>
               <animated.div style={animation450}>
-                <TopSongs trackStats={tracksStats} />
+                <TopSongs tracksStats={tracksStats} />
                 <TopArtists artistsStats={artistsStats} />
-                <PopularityGauge trackStats={tracksStats} />
-                <PredominantYear trackStats={tracksStats} />
+                <PopularityGauge tracksStats={tracksStats} />
+                <PredominantYear tracksStats={tracksStats} />
               </animated.div>
             </animated.div>
           </div>

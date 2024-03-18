@@ -1,14 +1,14 @@
 import SongCard from "../SongCard";
 
-export default function TopSongs({ trackStats }) {
+export default function TopSongs({ tracksStats }) {
   return (
     <div className="card mt-2 p-3 bg-base-100 shadow-x">
       <h1 className="text-2xl text-black">Top Songs</h1>
       <div className="sm:flex">
-        {trackStats.items ? (
+        {tracksStats.items ? (
           <>
             <div className="w-full sm:w-1/2">
-              {trackStats?.items?.slice(0, 5).map((track, index) => (
+              {tracksStats?.items?.slice(0, 5).map((track, index) => (
                 <SongCard
                   key={index}
                   rank={index + 1}
@@ -19,7 +19,7 @@ export default function TopSongs({ trackStats }) {
               ))}
             </div>
             <div className="w-full sm:w-1/2">
-              {trackStats?.items?.slice(5, 10).map((track, index) => (
+              {tracksStats?.items?.slice(5, 10).map((track, index) => (
                 <SongCard
                   key={index}
                   rank={index + 6}
