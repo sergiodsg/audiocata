@@ -6,9 +6,10 @@ import Login from "./components/Login";
 import Footer from "./components/Footer";
 import UserButton from "./components/UserButton";
 import TopSongs from "./components/TopSongs";
+import TopArtists from "./components/TopArtists";
+import PopularityGauge from "./components/PopularityGauge";
 import { useSpring, animated } from "@react-spring/web";
 import "./App.css";
-import TopArtists from "./components/TopArtists";
 
 function App() {
   const clientId = import.meta.env.VITE_CLIENT_ID;
@@ -35,7 +36,7 @@ function App() {
   }
 
   const animation200 = useDynamicAnimation(200);
-  const animation400 = useDynamicAnimation(400);
+  // const animation400 = useDynamicAnimation(400);
   const animation425 = useDynamicAnimation(425);
   const animation450 = useDynamicAnimation(450);
 
@@ -214,6 +215,7 @@ function App() {
               <animated.div style={animation450}>
                 <TopSongs trackStats={tracksStats} />
                 <TopArtists artistsStats={artistsStats} />
+                <PopularityGauge trackStats={tracksStats} />
               </animated.div>
             </animated.div>
           </div>

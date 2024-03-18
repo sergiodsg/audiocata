@@ -1,10 +1,9 @@
 import ArtistCard from "../ArtistCard";
 
 export default function TopArtists({ artistsStats }) {
-  // console.log(trackStats.items[0].name);
   return (
     <div className="card mt-2 p-3 bg-base-100 shadow-x">
-      <h1 className="text-2xl text-black">Top Artists✨</h1>
+      <h1 className="text-2xl text-black">Top Artists</h1>
       <div className="sm:flex">
         {artistsStats.items ? (
           <>
