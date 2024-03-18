@@ -8,6 +8,7 @@ import UserButton from "./components/UserButton";
 import TopSongs from "./components/TopSongs";
 import TopArtists from "./components/TopArtists";
 import PopularityGauge from "./components/PopularityGauge";
+import PredominantYear from "./components/PredominantYear";
 import { useSpring, animated } from "@react-spring/web";
 import "./App.css";
 
@@ -216,6 +217,7 @@ function App() {
                 <TopSongs trackStats={tracksStats} />
                 <TopArtists artistsStats={artistsStats} />
                 <PopularityGauge trackStats={tracksStats} />
+                <PredominantYear trackStats={tracksStats} />
               </animated.div>
             </animated.div>
           </div>
