@@ -1,11 +1,30 @@
 .background-fallback {
-  background: hsla(311, 100%, 39%, 1);
+  background: linear-gradient(229deg, #c700a2, #42e6ff);
+  background-size: 400% 400%;
 
-background: linear-gradient(315deg, hsla(311, 100%, 39%, 1) 0%, hsla(188, 100%, 63%, 1) 100%);
+  -webkit-animation: animatedBg 8s ease infinite;
+  -moz-animation: animatedBg 8s ease infinite;
+  -o-animation: animatedBg 8s ease infinite;
+  animation: animatedBg 8s ease infinite;
+}
 
-background: -moz-linear-gradient(315deg, hsla(311, 100%, 39%, 1) 0%, hsla(188, 100%, 63%, 1) 100%);
-
-background: -webkit-linear-gradient(315deg, hsla(311, 100%, 39%, 1) 0%, hsla(188, 100%, 63%, 1) 100%);
-
-filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#C700A3", endColorstr="#40E5FF", GradientType=1 );
+@-webkit-keyframes animatedBg {
+  0%{background-position:0% 51%}
+  50%{background-position:100% 50%}
+  100%{background-position:0% 51%}
+}
+@-moz-keyframes animatedBg {
+  0%{background-position:0% 51%}
+  50%{background-position:100% 50%}
+  100%{background-position:0% 51%}
+}
+@-o-keyframes animatedBg {
+  0%{background-position:0% 51%}
+  50%{background-position:100% 50%}
+  100%{background-position:0% 51%}
+}
+@keyframes animatedBg {
+  0%{background-position:0% 51%}
+  50%{background-position:100% 50%}
+  100%{background-position:0% 51%}
 }

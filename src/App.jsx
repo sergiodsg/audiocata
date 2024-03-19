@@ -156,11 +156,11 @@ function App() {
 
   return (
     <div className="background-fallback min-h-screen">
-      <div id="vanta" className="min-h-screen">
-        {!accessToken ||
-        accessToken === "undefined" ||
-        new Date().getTime() > expirationDate ||
-        expirationDate === "NaN" ? (
+      {!accessToken ||
+      accessToken === "undefined" ||
+      new Date().getTime() > expirationDate ||
+      expirationDate === "NaN" ? (
+        <div id="vanta" className="min-h-screen">
           <div className="flex flex-col items-center justify-center h-screen">
             {loading ? (
               <span className="loading loading-spinner loading-lg"></span>
@@ -171,90 +171,90 @@ function App() {
               </animated.div>
             )}
           </div>
-        ) : (
-          <div className="flex items-center justify-center w-full p-5">
-            <animated.div
-              style={animation200}
-              className="px-5 py-3 rounded-md bg-gray-300 bg-opacity-40 w-full"
-            >
-              <div className="flex justify-between items-center w-full">
-                <h1 className="text-4xl text-white">audiocata</h1>
-                <UserButton profile={profile} />
-              </div>
-              <div className="flex flex-col md:flex-row">
-                <div className="w-full md:w-1/2 p-1">
-                  <animated.div
-                    style={animation400}
-                    className="card mt-2 p-3 bg-base-100 shadow-xl"
-                  >
-                    <div style={{ minHeight: "128px" }}>
-                      <div className="form-control">
-                        <label className="label cursor-pointer">
-                          <span className="label-text">Last 4 weeks</span>
-                          <input
-                            type="radio"
-                            name="radio-10"
-                            className="radio checked:bg-purple-500"
-                            onChange={() => setTimeRange("short_term")}
-                            checked={timeRange === "short_term"}
-                          />
-                        </label>
-                      </div>
-                      <div className="form-control">
-                        <label className="label cursor-pointer">
-                          <span className="label-text">Last 6 months</span>
-                          <input
-                            type="radio"
-                            name="radio-10"
-                            className="radio checked:bg-emerald-300"
-                            onChange={() => setTimeRange("medium_term")}
-                            checked={timeRange === "medium_term"}
-                          />
-                        </label>
-                      </div>
-                      <div className="form-control">
-                        <label className="label cursor-pointer">
-                          <span className="label-text">All time</span>
-                          <input
-                            type="radio"
-                            name="radio-10"
-                            className="radio checked:bg-blue-400"
-                            onChange={() => setTimeRange("long_term")}
-                            checked={timeRange === "long_term"}
-                          />
-                        </label>
-                      </div>
+        </div>
+      ) : (
+        <div className="flex items-center justify-center w-full p-5">
+          <animated.div
+            style={animation200}
+            className="px-5 py-3 rounded-md bg-gray-300 bg-opacity-40 w-full"
+          >
+            <div className="flex justify-between items-center w-full">
+              <h1 className="text-4xl text-white">audiocata</h1>
+              <UserButton profile={profile} />
+            </div>
+            <div className="flex flex-col md:flex-row">
+              <div className="w-full md:w-1/2 p-1">
+                <animated.div
+                  style={animation400}
+                  className="card mt-2 p-3 bg-base-100 shadow-xl"
+                >
+                  <div style={{ minHeight: "128px" }}>
+                    <div className="form-control">
+                      <label className="label cursor-pointer">
+                        <span className="label-text">Last 4 weeks</span>
+                        <input
+                          type="radio"
+                          name="radio-10"
+                          className="radio checked:bg-purple-500"
+                          onChange={() => setTimeRange("short_term")}
+                          checked={timeRange === "short_term"}
+                        />
+                      </label>
                     </div>
-                  </animated.div>
-                  <animated.div style={animation425}>
-                    <TopSongs tracksStats={tracksStats} />
-                  </animated.div>
-                </div>
-                <div className="w-full md:w-1/2 p-1">
-                  <animated.div style={animation425}>
-                    <TopArtists artistsStats={artistsStats} />
-                  </animated.div>
-                  <animated.div style={animation475}>
-                    <PopularityGauge tracksStats={tracksStats} />
-                  </animated.div>
-                </div>
+                    <div className="form-control">
+                      <label className="label cursor-pointer">
+                        <span className="label-text">Last 6 months</span>
+                        <input
+                          type="radio"
+                          name="radio-10"
+                          className="radio checked:bg-emerald-300"
+                          onChange={() => setTimeRange("medium_term")}
+                          checked={timeRange === "medium_term"}
+                        />
+                      </label>
+                    </div>
+                    <div className="form-control">
+                      <label className="label cursor-pointer">
+                        <span className="label-text">All time</span>
+                        <input
+                          type="radio"
+                          name="radio-10"
+                          className="radio checked:bg-blue-400"
+                          onChange={() => setTimeRange("long_term")}
+                          checked={timeRange === "long_term"}
+                        />
+                      </label>
+                    </div>
+                  </div>
+                </animated.div>
+                <animated.div style={animation425}>
+                  <TopSongs tracksStats={tracksStats} />
+                </animated.div>
               </div>
-              <div className="flex flex-col md:flex-row">
-                <div className="w-full md:w-1/2 p-1">
-                  <animated.div style={animation500}>
-                    <PredominantYear tracksStats={tracksStats} />
-                  </animated.div>
-                </div>
-                <div className="w-full md:w-1/2 p-1">
-                  <animated.div style={animation525}>
-                    <TopGenres artistsStats={artistsStats} />
-                  </animated.div>
-                </div>
+              <div className="w-full md:w-1/2 p-1">
+                <animated.div style={animation425}>
+                  <TopArtists artistsStats={artistsStats} />
+                </animated.div>
+                <animated.div style={animation475}>
+                  <PopularityGauge tracksStats={tracksStats} />
+                </animated.div>
               </div>
-            </animated.div>
-          </div>
-        )}
-      </div>
+            </div>
+            <div className="flex flex-col md:flex-row">
+              <div className="w-full md:w-1/2 p-1">
+                <animated.div style={animation500}>
+                  <PredominantYear tracksStats={tracksStats} />
+                </animated.div>
+              </div>
+              <div className="w-full md:w-1/2 p-1">
+                <animated.div style={animation525}>
+                  <TopGenres artistsStats={artistsStats} />
+                </animated.div>
+              </div>
+            </div>
+          </animated.div>
+        </div>
+      )}
     </div>
   );
 }
