@@ -35,7 +35,7 @@ export default function PredominantYear({ tracksStats }) {
           <>
             <div className="stat">
               <div className="stat-figure text-secondary">
-                <div className="w-16 text-5xl">
+                <div className="w-16 text-2xl sm:text-6xl">
                   📅
                 </div>
               </div>

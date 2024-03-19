@@ -23,7 +23,7 @@ export default function PopularityGauge({ tracksStats }) {
           <>
             <div className="stat">
               <div className="stat-figure text-secondary">
-                <div className="w-16 text-5xl">
+                <div className="w-16 text-2xl sm:text-6xl">
                   {popularity > 75
                     ? "👩‍🎤"
                     : popularity > 50

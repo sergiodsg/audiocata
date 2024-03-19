@@ -184,7 +184,7 @@ function App() {
             className="px-5 py-3 rounded-md bg-gray-300 bg-opacity-40 w-full"
           >
             <div className="flex justify-between items-center w-full">
-              <h1 className="text-4xl text-white">audiocata</h1>
+              <h1 className="text-3xl sm:text-4xl text-white">audiocata</h1>
               <UserButton profile={profile} />
             </div>
             <div className="flex flex-col md:flex-row">
