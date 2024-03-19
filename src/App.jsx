@@ -45,22 +45,22 @@ function App() {
   const animation500 = useDynamicAnimation(500);
   const animation525 = useDynamicAnimation(525);
 
-  useEffect(() => {
-    if(!accessToken ||
-      accessToken === "undefined" ||
-      new Date().getTime() > expirationDate ||
-      expirationDate === "NaN"){
-        HALO({
-          el: "#vanta",
-          mouseControls: true,
-          touchControls: true,
-          gyroControls: false,
-          minHeight: 200.0,
-          minWidth: 200.0,
-          size: 2,
-        });
-    }
-  }, []);
+  // useEffect(() => {
+  //   if(!accessToken ||
+  //     accessToken === "undefined" ||
+  //     new Date().getTime() > expirationDate ||
+  //     expirationDate === "NaN"){
+  //       HALO({
+  //         el: "#vanta",
+  //         mouseControls: true,
+  //         touchControls: true,
+  //         gyroControls: false,
+  //         minHeight: 200.0,
+  //         minWidth: 200.0,
+  //         size: 2,
+  //       });
+  //   }
+  // }, [accessToken]);
 
   useEffect(() => {
     setLoading(true);
@@ -165,7 +165,7 @@ function App() {
       accessToken === "undefined" ||
       new Date().getTime() > expirationDate ||
       expirationDate === "NaN" ? (
-        <div id="vanta" className="min-h-screen">
+        // <div id="vanta" className="min-h-screen">
           <div className="flex flex-col items-center justify-center h-screen">
             {loading ? (
               <span className="loading loading-spinner loading-lg"></span>
@@ -176,7 +176,7 @@ function App() {
               </animated.div>
             )}
           </div>
-        </div>
+        // </div>
       ) : (
         <div className="flex items-center justify-center w-full p-5">
           <animated.div
