@@ -21,8 +21,8 @@ export default function SongCard({ rank, name, image }) {
 
   return (
     <div
-      className="rounded-md m-1 p-1"
-      style={{ backgroundColor: bgColor.rgb, color: textColor }}
+      className="rounded-md m-1 p-1 flex items-center"
+      style={{ backgroundColor: bgColor.rgb, color: textColor, minHeight: "44px" }}
     >
       <div className="flex items-center">
         {/* Rank */}

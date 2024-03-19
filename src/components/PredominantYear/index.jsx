@@ -28,7 +28,7 @@ export default function PredominantYear({ tracksStats }) {
   }, [tracksStats]);
 
   return (
-    <div className="card mt-2 p-3 bg-base-100 shadow-x">
+    <div className="card p-3 bg-base-100 shadow-x" style={{minHeight: "160px"}}>
       <h1 className="text-2xl text-black text-pretty">Predominant Year</h1>
       <div className="sm:flex">
         {tracksStats.items ? (
@@ -41,7 +41,7 @@ export default function PredominantYear({ tracksStats }) {
               </div>
               <div className="stat-value text-black">{year}</div>
               <div className="stat-title text-xs">
-                {year === new Date().getFullYear().toString() ? "Seems like you're listening to a lot of new music" : "Yup, seems like " + year + "'s music is your favorite" }
+                {year === new Date().getFullYear().toString() ? "You're listening to a lot of new music" : "Seems like " + year + "'s music is your favorite" }
               </div>
             </div>
           </>

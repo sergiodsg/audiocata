@@ -35,12 +35,15 @@ function App() {
       to: { opacity: 1 },
       delay: delay,
     });
-  }
+  };
 
   const animation200 = useDynamicAnimation(200);
-  // const animation400 = useDynamicAnimation(400);
+  const animation400 = useDynamicAnimation(400);
   const animation425 = useDynamicAnimation(425);
   const animation450 = useDynamicAnimation(450);
+  const animation475 = useDynamicAnimation(475);
+  const animation500 = useDynamicAnimation(500);
+  const animation525 = useDynamicAnimation(525);
 
   useEffect(() => {
     HALO({
@@ -80,39 +83,39 @@ function App() {
       setTracksStats([]);
       setArtistsStats([]);
 
-        (async () => {
-          const result = await getAccessToken(clientId, code);
-          const accessToken = result.access_token;
-          const expiresIn = result.expires_in;
-  
-          const expirationDate = new Date().getTime() + expiresIn * 1000;
-  
-          window.localStorage.setItem("accessToken", accessToken);
-          window.localStorage.setItem(
-            "expirationDate",
-            expirationDate.toString()
-          );
-  
-          const profileData = await fetchProfile(accessToken);
-          const tracksData = await fetchTop(
-            accessToken,
-            "tracks",
-            timeRange,
-            50,
-            0
-          );
-          const artistsData = await fetchTop(
-            accessToken,
-            "artists",
-            timeRange,
-            50,
-            0
-          );
-          setProfile(profileData);
-          setTracksStats(tracksData);
-          setArtistsStats(artistsData);
-        })();
-        setTimeout(() => setLoading(false), 400);
+      (async () => {
+        const result = await getAccessToken(clientId, code);
+        const accessToken = result.access_token;
+        const expiresIn = result.expires_in;
+
+        const expirationDate = new Date().getTime() + expiresIn * 1000;
+
+        window.localStorage.setItem("accessToken", accessToken);
+        window.localStorage.setItem(
+          "expirationDate",
+          expirationDate.toString()
+        );
+
+        const profileData = await fetchProfile(accessToken);
+        const tracksData = await fetchTop(
+          accessToken,
+          "tracks",
+          timeRange,
+          50,
+          0
+        );
+        const artistsData = await fetchTop(
+          accessToken,
+          "artists",
+          timeRange,
+          50,
+          0
+        );
+        setProfile(profileData);
+        setTracksStats(tracksData);
+        setArtistsStats(artistsData);
+      })();
+      setTimeout(() => setLoading(false), 400);
       return;
     }
 
@@ -127,27 +130,27 @@ function App() {
       setTracksStats([]);
       setArtistsStats([]);
 
-        (async () => {
-          const profileData = await fetchProfile(accessToken);
-          const tracksData = await fetchTop(
-            accessToken,
-            "tracks",
-            timeRange,
-            50,
-            0
-          );
-          const artistsData = await fetchTop(
-            accessToken,
-            "artists",
-            timeRange,
-            50,
-            0
-          );
-          setProfile(profileData);
-          setTracksStats(tracksData);
-          setArtistsStats(artistsData);
-        })();
-        setTimeout(() => setLoading(false), 400);
+      (async () => {
+        const profileData = await fetchProfile(accessToken);
+        const tracksData = await fetchTop(
+          accessToken,
+          "tracks",
+          timeRange,
+          50,
+          0
+        );
+        const artistsData = await fetchTop(
+          accessToken,
+          "artists",
+          timeRange,
+          50,
+          0
+        );
+        setProfile(profileData);
+        setTracksStats(tracksData);
+        setArtistsStats(artistsData);
+      })();
+      setTimeout(() => setLoading(false), 400);
     }
   }, [code, timeRange]);
 
@@ -170,57 +173,84 @@ function App() {
           </div>
         ) : (
           <div className="flex items-center justify-center w-full p-5">
-            <animated.div style={animation200} className="px-5 py-3 rounded-md bg-gray-300 bg-opacity-40 w-full">
+            <animated.div
+              style={animation200}
+              className="px-5 py-3 rounded-md bg-gray-300 bg-opacity-40 w-full"
+            >
               <div className="flex justify-between items-center w-full">
                 <h1 className="text-4xl text-white">audiocata</h1>
                 <UserButton profile={profile} />
               </div>
-              {/* selector */}
-              <animated.div style={animation425} className="card mt-2 p-3 bg-base-100 shadow-xl">
-                <div className="form-control">
-                  <label className="label cursor-pointer">
-                    <span className="label-text">Last 4 weeks</span>
-                    <input
-                      type="radio"
-                      name="radio-10"
-                      className="radio checked:bg-purple-500"
-                      onChange={() => setTimeRange("short_term")}
-                      checked={timeRange === "short_term"}
-                    />
-                  </label>
+              <div className="flex flex-col md:flex-row">
+                <div className="w-full md:w-1/2 p-1">
+                  <animated.div
+                    style={animation400}
+                    className="card mt-2 p-3 bg-base-100 shadow-xl"
+                  >
+                    <div style={{ minHeight: "128px" }}>
+                      <div className="form-control">
+                        <label className="label cursor-pointer">
+                          <span className="label-text">Last 4 weeks</span>
+                          <input
+                            type="radio"
+                            name="radio-10"
+                            className="radio checked:bg-purple-500"
+                            onChange={() => setTimeRange("short_term")}
+                            checked={timeRange === "short_term"}
+                          />
+                        </label>
+                      </div>
+                      <div className="form-control">
+                        <label className="label cursor-pointer">
+                          <span className="label-text">Last 6 months</span>
+                          <input
+                            type="radio"
+                            name="radio-10"
+                            className="radio checked:bg-emerald-300"
+                            onChange={() => setTimeRange("medium_term")}
+                            checked={timeRange === "medium_term"}
+                          />
+                        </label>
+                      </div>
+                      <div className="form-control">
+                        <label className="label cursor-pointer">
+                          <span className="label-text">All time</span>
+                          <input
+                            type="radio"
+                            name="radio-10"
+                            className="radio checked:bg-blue-400"
+                            onChange={() => setTimeRange("long_term")}
+                            checked={timeRange === "long_term"}
+                          />
+                        </label>
+                      </div>
+                    </div>
+                  </animated.div>
+                  <animated.div style={animation425}>
+                    <TopSongs tracksStats={tracksStats} />
+                  </animated.div>
                 </div>
-                <div className="form-control">
-                  <label className="label cursor-pointer">
-                    <span className="label-text">Last 6 months</span>
-                    <input
-                      type="radio"
-                      name="radio-10"
-                      className="radio checked:bg-emerald-300"
-                      onChange={() => setTimeRange("medium_term")}
-                      checked={timeRange === "medium_term"}
-                    />
-                  </label>
+                <div className="w-full md:w-1/2 p-1">
+                  <animated.div style={animation425}>
+                    <TopArtists artistsStats={artistsStats} />
+                  </animated.div>
+                  <animated.div style={animation475}>
+                    <PopularityGauge tracksStats={tracksStats} />
+                  </animated.div>
                 </div>
-                <div className="form-control">
-                  <label className="label cursor-pointer">
-                    <span className="label-text">All time</span>
-                    <input
-                      type="radio"
-                      name="radio-10"
-                      className="radio checked:bg-blue-400"
-                      onChange={() => setTimeRange("long_term")}
-                      checked={timeRange === "long_term"}
-                    />
-                  </label>
+              </div>
+              <div className="flex flex-col md:flex-row">
+                <div className="w-full md:w-1/2 p-1">
+                  <animated.div style={animation500}>
+                    <PredominantYear tracksStats={tracksStats} />
+                  </animated.div>
                 </div>
-              </animated.div>
-              <animated.div style={animation450}>
-                <TopSongs tracksStats={tracksStats} />
-                <TopArtists artistsStats={artistsStats} />
-                <PopularityGauge tracksStats={tracksStats} />
-                <PredominantYear tracksStats={tracksStats} />
-                <TopGenres artistsStats={artistsStats} />
-              </animated.div>
+                <div className="w-full md:w-1/2 p-1">
+                  <animated.div style={animation525}>
+                    <TopGenres artistsStats={artistsStats} />
+                  </animated.div>
+                </div>
+              </div>
             </animated.div>
           </div>
         )}

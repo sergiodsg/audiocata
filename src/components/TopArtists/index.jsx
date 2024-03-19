@@ -2,7 +2,7 @@ import ArtistCard from "../ArtistCard";
 
 export default function TopArtists({ artistsStats }) {
   return (
-    <div className="card mt-2 p-3 bg-base-100 shadow-x">
+    <div className="card md:mt-2 p-3 bg-base-100 shadow-x">
       <h1 className="text-2xl text-black">Top Artists</h1>
       <div className="sm:flex">
         {artistsStats.items ? (

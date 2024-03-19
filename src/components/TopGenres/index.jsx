@@ -49,16 +49,15 @@ export default function TopGenres({ artistsStats }) {
   }, [artistsStats]);
 
   return (
-    <div className="card mt-2 p-3 bg-base-100 shadow-x">
+    <div className="card p-3 bg-base-100 shadow-x">
       <h1 className="text-2xl text-black text-pretty">Top Genres</h1>
       <div className="flex">
         {artistsStats.items ? (
           <>
             <div className="flex w-full h-20 bg-transparent rounded-md m-3">
               {genres?.map(([genre, count], index) => (
-                <div key={index} className={index == 0 ? "rounded-l-md" : index == 4 && "rounded-r-md"} style={{ flex: count, backgroundColor: colors[index]}}>
-                  <h2 className="text-sm p-5">{genre}</h2>
-                  {/* <p>{count}</p> */}
+                <div key={index} className={index == 0 ? "rounded-l-md" : index == 4 ? "rounded-r-md" : ""} style={{ flex: count, backgroundColor: colors[index]}}>
+                  <h2 className="text-xs p-1">{genre}</h2>
                 </div>
               ))}
             </div>
