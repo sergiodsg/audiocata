@@ -53,7 +53,7 @@ export default function SongCard({ rank, name, image }) {
 
         <div className="flex flex-col w-8/12">
           <h1
-            className="text-md"
+            className="text-sm"
             style={{
               whiteSpace: "nowrap",
               overflow: "hidden",
