@@ -46,15 +46,20 @@ function App() {
   const animation525 = useDynamicAnimation(525);
 
   useEffect(() => {
-    HALO({
-      el: "#vanta",
-      mouseControls: true,
-      touchControls: true,
-      gyroControls: false,
-      minHeight: 200.0,
-      minWidth: 200.0,
-      size: 2,
-    });
+    if(!accessToken ||
+      accessToken === "undefined" ||
+      new Date().getTime() > expirationDate ||
+      expirationDate === "NaN"){
+        HALO({
+          el: "#vanta",
+          mouseControls: true,
+          touchControls: true,
+          gyroControls: false,
+          minHeight: 200.0,
+          minWidth: 200.0,
+          size: 2,
+        });
+    }
   }, []);
 
   useEffect(() => {
