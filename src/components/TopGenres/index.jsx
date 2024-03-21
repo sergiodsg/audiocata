@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import "./styles.css";
 
 export default function TopGenres({ artistsStats }) {
   const [genres, setGenres] = useState([]);
@@ -51,13 +52,13 @@ export default function TopGenres({ artistsStats }) {
   return (
     <div className="card p-3 bg-base-100 shadow-x">
       <h1 className="text-2xl text-black text-pretty">Top Genres</h1>
-      <div className="flex">
+      <div className="flex flex-wrap">
         {artistsStats.items ? (
           <>
-            <div className="flex w-full h-20 bg-transparent rounded-md m-3">
+            <div className="flex w-full h-20 bg-transparent rounded-md my-3">
               {genres?.map(([genre, count], index) => (
                 <div key={index} className={index == 0 ? "rounded-l-md" : index == 4 ? "rounded-r-md" : ""} style={{ flex: count, backgroundColor: colors[index]}}>
-                  <h2 className="text-xs p-1">{genre}</h2>
+                  <h2 className="text-xs p-1 bar-chart">{genre}</h2>
                 </div>
               ))}
             </div>

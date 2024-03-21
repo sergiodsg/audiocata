@@ -184,11 +184,11 @@ function App() {
             className="px-5 py-3 rounded-md bg-gray-300 bg-opacity-40 w-full"
           >
             <div className="flex justify-between items-center w-full">
-              <h1 className="text-3xl sm:text-4xl text-white">audiocata</h1>
+              <h1 className="text-2xl md:text-4xl text-white">audiocata</h1>
               <UserButton profile={profile} />
             </div>
-            <div className="flex flex-col md:flex-row">
-              <div className="w-full md:w-1/2 p-1">
+            <div className="flex flex-col lg:flex-row">
+              <div className="w-full lg:w-1/2 p-1">
                 <animated.div
                   style={animation400}
                   className="card mt-2 p-3 bg-base-100 shadow-xl"
@@ -236,7 +236,7 @@ function App() {
                   <TopSongs tracksStats={tracksStats} />
                 </animated.div>
               </div>
-              <div className="w-full md:w-1/2 p-1">
+              <div className="w-full lg:w-1/2 p-1">
                 <animated.div style={animation425}>
                   <TopArtists artistsStats={artistsStats} />
                 </animated.div>
@@ -245,13 +245,13 @@ function App() {
                 </animated.div>
               </div>
             </div>
-            <div className="flex flex-col md:flex-row">
-              <div className="w-full md:w-1/2 p-1">
+            <div className="flex flex-col lg:flex-row">
+              <div className="w-full lg:w-1/2 p-1">
                 <animated.div style={animation500}>
                   <PredominantYear tracksStats={tracksStats} />
                 </animated.div>
               </div>
-              <div className="w-full md:w-1/2 p-1">
+              <div className="w-full lg:w-1/2 p-1">
                 <animated.div style={animation525}>
                   <TopGenres artistsStats={artistsStats} />
                 </animated.div>

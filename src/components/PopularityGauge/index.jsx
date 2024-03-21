@@ -22,8 +22,8 @@ export default function PopularityGauge({ tracksStats }) {
         {tracksStats.items ? (
           <>
             <div className="stat">
-              <div className="stat-figure text-secondary">
-                <div className="w-16 text-2xl sm:text-6xl">
+              <div className="stat-figure">
+                <div className="text-3xl sm:text-6xl">
                   {popularity > 75
                     ? "👩‍🎤"
                     : popularity > 50
@@ -38,10 +38,10 @@ export default function PopularityGauge({ tracksStats }) {
                 {popularity > 75
                   ? "Super Pop"
                   : popularity > 50
-                  ? "Pop"
+                  ? "Slightly Popular"
                   : popularity > 25
-                  ? "Alternative"
-                  : "Super Alternative"}
+                  ? "Quite Alternative"
+                  : "Pure Alternative"}
               </div>
               {/* <div className="stat-desc text-black">
                 {popularity > 75

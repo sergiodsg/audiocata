@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import "./styles.css"
 
 export default function PredominantYear({ tracksStats }) {
   const [year, setYear] = useState(0);
@@ -34,13 +35,13 @@ export default function PredominantYear({ tracksStats }) {
         {tracksStats.items ? (
           <>
             <div className="stat">
-              <div className="stat-figure text-secondary">
-                <div className="w-16 text-2xl sm:text-6xl">
+              <div className="stat-figure">
+                <div className="text-3xl sm:text-6xl">
                   📅
                 </div>
               </div>
               <div className="stat-value text-black">{year}</div>
-              <div className="stat-title text-xs">
+              <div className="stat-title text-xs description">
                 {year === new Date().getFullYear().toString() ? "You're listening to a lot of new music" : "Seems like " + year + "'s music is your favorite" }
               </div>
             </div>
