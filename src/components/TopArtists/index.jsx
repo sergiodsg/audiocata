@@ -1,9 +1,25 @@
 import ArtistCard from "../ArtistCard";
+import SpotifyLogo from "../../assets/Spotify_Logo_RGB_Black.png";
 
 export default function TopArtists({ artistsStats }) {
   return (
-    <div className="card lg:mt-2 p-3 bg-base-100 shadow-x">
-      <h1 className="text-2xl text-black">Top Artists</h1>
+    <div
+      className="card lg:mt-2 p-3 bg-base-100 shadow-x"
+      style={{ minHeight: "152px" }}
+    >
+      <div className="flex justify-between">
+        <h1 className="text-2xl text-black">Top Artists</h1>
+        {artistsStats.items && (
+          <div className="pt-1 pr-1">
+            <img
+              src={SpotifyLogo}
+              alt="Spotify"
+              className="w-20"
+              style={{ minWidth: "70px" }}
+            />
+          </div>
+        )}
+      </div>
       <div className="sm:flex">
         {artistsStats.items ? (
           <>
@@ -20,10 +36,10 @@ export default function TopArtists({ artistsStats }) {
             <div className="w-full sm:w-1/2">
               {artistsStats.items?.slice(5, 10).map((artist, index) => (
                 <ArtistCard
-                key={index}
-                rank={index + 6}
-                name={artist.name}
-                image={artist.images[2].url}
+                  key={index}
+                  rank={index + 6}
+                  name={artist.name}
+                  image={artist.images[2].url}
                 />
               ))}
             </div>

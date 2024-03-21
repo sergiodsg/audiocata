@@ -17,7 +17,7 @@ export default function UserButton({ profile }) {
           )}
         </div>
       </summary>
-      <ul className="p-2 shadow menu dropdown-content z-[1] bg-base-100 text-black rounded-box w-36">
+      <ul className="p-2 shadow menu dropdown-content z-[1] bg-base-100 text-black rounded-box w-full">
         <li>
           <button className="btn" onClick={logOff}>
             Log Off

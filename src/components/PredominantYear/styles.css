@@ -1,5 +1,7 @@
 @media (max-width: 400px) {
   .description {
     font-size: 0.6rem;
+    white-space: normal !important;
+    max-width: 10rem;
   }
 }

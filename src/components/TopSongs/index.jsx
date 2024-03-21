@@ -1,9 +1,22 @@
 import SongCard from "../SongCard";
+import SpotifyLogo from "../../assets/Spotify_Logo_RGB_Black.png";
 
 export default function TopSongs({ tracksStats }) {
   return (
     <div className="card mt-2 p-3 bg-base-100 shadow-x">
-      <h1 className="text-2xl text-black">Top Songs</h1>
+      <div className="flex justify-between">
+        <h1 className="text-2xl text-black">Top Songs</h1>
+        {tracksStats.items && (
+          <div className="pt-1 pr-1">
+            <img
+              src={SpotifyLogo}
+              alt="Spotify"
+              className="w-20"
+              style={{ minWidth: "70px" }}
+            />
+          </div>
+        )}
+      </div>
       <div className="sm:flex">
         {tracksStats.items ? (
           <>

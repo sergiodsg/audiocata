@@ -1,5 +1,5 @@
 @media (max-width: 400px) {
   .bar-chart {
-    font-size: 0.6rem;
+    font-size: 0.6rem !important;
   }
 }
