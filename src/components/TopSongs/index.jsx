@@ -28,6 +28,7 @@ export default function TopSongs({ tracksStats }) {
                   name={track.name}
                   artists={track.artists}
                   cover={track.album.images[2].url}
+                  url={track.external_urls.spotify}
                 />
               ))}
             </div>
@@ -39,6 +40,7 @@ export default function TopSongs({ tracksStats }) {
                   name={track.name}
                   artists={track.artists}
                   cover={track.album.images[2].url}
+                  url={track.external_urls.spotify}
                 />
               ))}
             </div>
