@@ -7,7 +7,7 @@ export default function Login({ clientId }) {
       <h1 className="text-4xl text-center text-white mb-2">audiocata</h1>
       <p className="mb-2">A listening habits analyzer :)</p>
       <button className="btn" onClick={() => redirectToAuthCodeFlow(clientId)}>
-        Login with <img src={SpotifyLogo} alt="Spotify" className="w-20" style={{minWidth: "70px"}} />
+        Log in with <img src={SpotifyLogo} alt="Spotify" className="w-20" style={{minWidth: "70px"}} />
       </button>
     </div>
   );
