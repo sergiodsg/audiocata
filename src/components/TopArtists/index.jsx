@@ -30,6 +30,7 @@ export default function TopArtists({ artistsStats }) {
                   rank={index + 1}
                   name={artist.name}
                   image={artist.images[2].url}
+                  url={artist.external_urls.spotify}
                 />
               ))}
             </div>
@@ -40,6 +41,7 @@ export default function TopArtists({ artistsStats }) {
                   rank={index + 6}
                   name={artist.name}
                   image={artist.images[2].url}
+                  url={artist.external_urls.spotify}
                 />
               ))}
             </div>

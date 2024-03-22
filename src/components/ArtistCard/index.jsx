@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { FastAverageColor } from "fast-average-color";
 
-export default function SongCard({ rank, name, image }) {
+export default function SongCard({ rank, name, image, url }) {
   const [bgColor, setBgColor] = useState("");
   const [textColor, setTextColor] = useState("#000");
   const [bgRank, setBgRank] = useState("#000");
@@ -60,7 +60,7 @@ export default function SongCard({ rank, name, image }) {
               textOverflow: "ellipsis",
             }}
           >
-            {name}
+            <a href={url} className="hover:underline underline-offset-1">{name}</a>
           </h1>
         </div>
       </div>
