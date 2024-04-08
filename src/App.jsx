@@ -4,6 +4,7 @@ import { getAccessToken } from "./spotifyAuth";
 import { fetchProfile, fetchTop } from "./spotifyStats";
 import Login from "./components/Login";
 import Footer from "./components/Footer";
+// import Disclaimer from "./components/Disclaimer";
 import UserButton from "./components/UserButton";
 import TopSongs from "./components/TopSongs";
 import TopArtists from "./components/TopArtists";
@@ -172,6 +173,7 @@ function App() {
             ) : (
               <animated.div style={animation200}>
                 <Login clientId={clientId} />
+                {/* <Disclaimer /> */}
                 <Footer />
               </animated.div>
             )}
