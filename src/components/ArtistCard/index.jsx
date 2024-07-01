@@ -21,7 +21,7 @@ export default function SongCard({ rank, name, image, url }) {
 
   return (
     <div
-      className="rounded-md m-1 p-1 flex items-center"
+      className="rounded-md m-1 p-1"
       style={{ backgroundColor: bgColor.rgb, color: textColor, minHeight: "44px" }}
     >
       <div className="flex items-center">
