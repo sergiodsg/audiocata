@@ -13,8 +13,7 @@
     "@react-spring/web": "^9.7.3",
     "fast-average-color": "^9.4.0",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "vanta": "^0.5.24"
+    "react-dom": "^18.2.0"
   },
   "devDependencies": {
     "@types/react": "^18.2.56",
