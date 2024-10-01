@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import HALO from "vanta/src/vanta.halo";
 import { getAccessToken } from "./spotifyAuth";
 import { fetchProfile, fetchTop } from "./spotifyStats";
 import Login from "./components/Login";
