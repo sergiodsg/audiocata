@@ -72,7 +72,7 @@ function App() {
         new Date().getTime() > expirationDate ||
         expirationDate === "NaN")
     ) {
-      setTimeout(() => setLoading(false), 100);
+      setTimeout(() => setLoading(false), 800);
       return;
     }
 
