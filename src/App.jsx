@@ -29,6 +29,8 @@ function App() {
 
   const [profile, setProfile] = useState({});
 
+  const isDarkMode = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+
   const useDynamicAnimation = (delay) => {
     return useSpring({
       from: { opacity: 0 },
@@ -171,7 +173,7 @@ function App() {
               <span className="loading loading-spinner loading-lg"></span>
             ) : (
               <animated.div style={animation200}>
-                <Login clientId={clientId} />
+                <Login clientId={clientId} isDarkMode={isDarkMode}/>
                 {/* <Disclaimer /> */}
                 <Footer />
               </animated.div>
@@ -234,27 +236,27 @@ function App() {
                   </div>
                 </animated.div>
                 <animated.div style={animation425}>
-                  <TopSongs tracksStats={tracksStats} />
+                  <TopSongs tracksStats={tracksStats} isDarkMode={isDarkMode}/>
                 </animated.div>
               </div>
               <div className="w-full lg:w-1/2 p-1">
                 <animated.div style={animation425}>
-                  <TopArtists artistsStats={artistsStats} />
+                  <TopArtists artistsStats={artistsStats} isDarkMode={isDarkMode}/>
                 </animated.div>
                 <animated.div style={animation475}>
-                  <PopularityGauge tracksStats={tracksStats} />
+                  <PopularityGauge tracksStats={tracksStats} isDarkMode={isDarkMode}/>
                 </animated.div>
               </div>
             </div>
             <div className="flex flex-col lg:flex-row">
               <div className="w-full lg:w-1/2 p-1">
                 <animated.div style={animation500}>
-                  <PredominantYear tracksStats={tracksStats} />
+                  <PredominantYear tracksStats={tracksStats} isDarkMode={isDarkMode}/>
                 </animated.div>
               </div>
               <div className="w-full lg:w-1/2 p-1">
                 <animated.div style={animation525}>
-                  <TopGenres artistsStats={artistsStats} />
+                  <TopGenres artistsStats={artistsStats} isDarkMode={isDarkMode}/>
                 </animated.div>
               </div>
             </div>

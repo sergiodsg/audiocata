@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import "./styles.css"
 
-export default function PredominantYear({ tracksStats }) {
+export default function PredominantYear({ tracksStats, isDarkMode }) {
   const [year, setYear] = useState(0);
 
   const calculateYear = () => {
@@ -30,7 +30,7 @@ export default function PredominantYear({ tracksStats }) {
 
   return (
     <div className="card p-3 bg-base-100 shadow-x" style={{minHeight: "160px"}}>
-      <h1 className="text-2xl text-black text-pretty">Predominant Year</h1>
+      <h1 className={`text-2xl text-pretty ${isDarkMode ? "text-gray-400" : "text-black"}`}>Predominant Year</h1>
       <div className="sm:flex">
         {tracksStats.items ? (
           <>
@@ -40,7 +40,7 @@ export default function PredominantYear({ tracksStats }) {
                   📅
                 </div>
               </div>
-              <div className="stat-value text-black">{year}</div>
+              <div className={`stat-value ${isDarkMode ? "text-gray-400" : "text-black"}`}>{year}</div>
               <div className="stat-title text-xs description">
                 {year === new Date().getFullYear().toString() ? "You're listening to a lot of new music" : "Seems like " + year + "'s music is your favorite" }
               </div>
@@ -48,7 +48,7 @@ export default function PredominantYear({ tracksStats }) {
           </>
         ) : (
           <div className="flex w-full justify-center p-5">
-            <span className="loading loading-spinner loading-md text-black"></span>
+            <span className={`loading loading-spinner loading-md ${isDarkMode ? "text-gray-400" : "text-black"}`}></span>
           </div>
         )}
       </div>

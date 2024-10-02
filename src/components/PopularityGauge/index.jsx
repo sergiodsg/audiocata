@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-export default function PopularityGauge({ tracksStats }) {
+export default function PopularityGauge({ tracksStats, isDarkMode }) {
   const [popularity, setPopularity] = useState(0);
 
   const calculatePopularity = () => {
@@ -17,7 +17,7 @@ export default function PopularityGauge({ tracksStats }) {
 
   return (
     <div className="card mt-2 p-3 bg-base-100 shadow-x">
-      <h1 className="text-2xl text-black text-pretty">Popularity Rank</h1>
+      <h1 className={`text-2xl text-pretty ${isDarkMode ? "text-gray-400" : "text-black"}`}>Popularity Rank</h1>
       <div className="sm:flex">
         {tracksStats.items ? (
           <>
@@ -33,7 +33,7 @@ export default function PopularityGauge({ tracksStats }) {
                     : "💽"}
                 </div>
               </div>
-              <div className="stat-value text-black">{popularity}%</div>
+              <div className={`stat-value ${isDarkMode ? "text-gray-400" : "text-black"}`}>{popularity}%</div>
               <div className="stat-title">
                 {popularity > 75
                   ? "Super Pop"
@@ -56,7 +56,7 @@ export default function PopularityGauge({ tracksStats }) {
           </>
         ) : (
           <div className="flex w-full justify-center p-5">
-            <span className="loading loading-spinner loading-md text-black"></span>
+            <span className={`loading loading-spinner loading-md ${isDarkMode ? "text-gray-400" : "text-black"}`}></span>
           </div>
         )}
       </div>

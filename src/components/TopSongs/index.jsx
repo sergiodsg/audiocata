@@ -1,19 +1,33 @@
 import SongCard from "../SongCard";
-import SpotifyLogo from "../../assets/Spotify_Logo_RGB_Black.png";
+import SpotifyLogoBlack from "../../assets/Spotify_Logo_RGB_Black.png";
+import SpotifyLogoGreen from "../../assets/Spotify_Logo_RGB_Green.png";
 
-export default function TopSongs({ tracksStats }) {
+export default function TopSongs({ tracksStats, isDarkMode }) {
   return (
     <div className="card mt-2 p-3 bg-base-100 shadow-x">
       <div className="flex justify-between">
-        <h1 className="text-2xl text-black">Top Songs</h1>
+        <h1
+          className={`text-2xl ${isDarkMode ? "text-gray-400" : "text-black"}`}
+        >
+          Top Songs
+        </h1>
         {tracksStats.items && (
           <div className="pt-1 pr-1">
-            <img
-              src={SpotifyLogo}
-              alt="Spotify"
-              className="w-20"
-              style={{ minWidth: "70px" }}
-            />
+            {isDarkMode ? (
+              <img
+                src={SpotifyLogoGreen}
+                alt="Spotify"
+                className="w-20"
+                style={{ minWidth: "70px" }}
+              />
+            ) : (
+              <img
+                src={SpotifyLogoBlack}
+                alt="Spotify"
+                className="w-20"
+                style={{ minWidth: "70px" }}
+              />
+            )}
           </div>
         )}
       </div>
@@ -47,7 +61,7 @@ export default function TopSongs({ tracksStats }) {
           </>
         ) : (
           <div className="flex w-full justify-center p-5">
-            <span className="loading loading-spinner loading-md text-black"></span>
+            <span className={`loading loading-spinner loading-md ${isDarkMode ? "text-gray-400" : "text-black"}`}></span>
           </div>
         )}
       </div>
